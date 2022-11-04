@@ -61,4 +61,111 @@ function printInConsole(...kol) {
 console.log(printInConsole(1, 2, 3, 4, 5));
 console.log(printInConsole("A", "B", "C"));
 console.log(printInConsole(true, false, false, true, true));
+let test3 = "Elzero";
+let test4 = 10;
+test4 = "Osama";
+function getActions(btns) {
+    console.log(`Action for button up is ${btns.up}`);
+    console.log(`Action for button right is ${btns.right}`);
+    console.log(`Action for button down is ${btns.down}`);
+    console.log(`Action for button left is ${btns.left}`);
+    console.log(`Action for button X is ${btns.x}`);
+}
+getActions({ up: "upp", right: "rite", down: "dwn", left: "lft", x: true });
+function compare(num1, num2) {
+    if (num1 === num2) {
+        return 0;
+    }
+    else if (num1 > num2) {
+        return 1;
+    }
+    else {
+        return -1;
+    }
+}
+console.log(compare(10, 10));
+console.log(compare(10, 8));
+console.log(compare(10, 12));
+let article = [10, "titleOne", false];
+console.log(article);
+const [id, title, published] = article;
+console.log(id);
+console.log(title);
+console.log(published);
+function logging(mg) {
+    console.log(mg);
+    return;
+}
+console.log(logging("Iam a Massage"));
+const fail = (msg) => {
+    throw new Error(msg);
+};
+const kids = 15;
+const easy = 9;
+const medium = 6;
+const hard = 3;
+var level;
+(function (level) {
+    level[level["kids"] = 15] = "kids";
+    level[level["easy"] = 9] = "easy";
+    level[level["medium"] = 6] = "medium";
+    level[level["hard"] = 3] = "hard";
+})(level || (level = {}));
+let lvl = "easy";
+if (lvl === "easy") {
+    console.log(`Level is ${lvl}, Time left is ${level.easy}`);
+}
+function getSec() {
+    return 3;
+}
+var children;
+(function (children) {
+    children[children["five"] = 25] = "five";
+    children[children["seven"] = 20] = "seven";
+    children[children["ten"] = 15] = "ten";
+})(children || (children = {}));
+var diff;
+(function (diff) {
+    diff[diff["kid"] = 25] = "kid";
+    diff[diff["easy"] = 8] = "easy";
+    diff[diff["medium"] = 6] = "medium";
+    diff[diff["hard"] = getSec()] = "hard";
+})(diff || (diff = {}));
+lvl = "medium";
+if (lvl === "easy") {
+    console.log(`Level is ${lvl}, Time left is ${level.easy}`);
+}
+function getActioons(btn) {
+    console.log(`Hello ${btn.one}`);
+    console.log(`Hello ${btn.two}`);
+    console.log(`Hello ${btn.three}`);
+}
+getActioons({ one: "string", two: 10, three: true });
+let obj = {
+    user: "Osama",
+    id: 100,
+    hire: true,
+    skills: {
+        one: "HTML",
+        two: "css",
+    },
+};
+obj.id = 101;
+obj.hire = false;
+console.log(obj.id);
+console.log(obj.skills.two);
+function ins(n) {
+    return Game.Hard - n;
+}
+var Game;
+(function (Game) {
+    Game[Game["Easy"] = 100] = "Easy";
+    Game[Game["Medium"] = 80] = "Medium";
+    Game[Game["Hard"] = 40] = "Hard";
+    Game[Game["Insane"] = ins(10)] = "Insane";
+})(Game || (Game = {}));
+console.log(Game.Easy);
+console.log(Game.Medium);
+console.log(Game.Hard);
+console.log(Game.Insane);
 //# sourceMappingURL=index.js.map

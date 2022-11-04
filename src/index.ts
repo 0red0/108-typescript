@@ -77,6 +77,7 @@ function addAll(...numb: number[]): number {
 }
 console.log(addAll(3, 100, 99.3, 5, 12.7));
 
+// rest example 2
 function printInConsole(...kol: any[]) {
    for (let i = 0; i < kol.length; i++) {
       console.log(`The Value Is ${kol[i]} And Type Is ${typeof kol[i]}`);
@@ -86,3 +87,155 @@ function printInConsole(...kol: any[]) {
 console.log(printInConsole(1, 2, 3, 4, 5));
 console.log(printInConsole("A", "B", "C"));
 console.log(printInConsole(true, false, false, true, true));
+
+// Type Alias
+
+type st = string;
+let test3: st = "Elzero";
+
+type numORst = string | number;
+let test4: numORst = 10;
+test4 = "Osama";
+// test4 = false;
+
+// type alias with objects
+type Buttons = {
+   up: string;
+   right: string;
+   down: string;
+   left: string;
+};
+type Last = Buttons & {
+   x: boolean;
+};
+function getActions(btns: Last) {
+   console.log(`Action for button up is ${btns.up}`);
+   console.log(`Action for button right is ${btns.right}`);
+   console.log(`Action for button down is ${btns.down}`);
+   console.log(`Action for button left is ${btns.left}`);
+   console.log(`Action for button X is ${btns.x}`);
+}
+
+getActions({ up: "upp", right: "rite", down: "dwn", left: "lft", x: true });
+
+// Type Literal
+type numos = 0 | 1 | -1;
+function compare(num1: number, num2: number): numos {
+   if (num1 === num2) {
+      return 0;
+   } else if (num1 > num2) {
+      return 1;
+   } else {
+      return -1;
+   }
+}
+console.log(compare(10, 10));
+console.log(compare(10, 8));
+console.log(compare(10, 12));
+
+// Tuple
+let article: readonly [number, string, boolean] = [10, "titleOne", false];
+// article.push(12);
+console.log(article);
+
+const [id, title, published] = article;
+console.log(id);
+console.log(title);
+console.log(published);
+
+// Void & Never
+function logging(mg: string): void {
+   console.log(mg);
+   return;
+}
+console.log(logging("Iam a Massage"));
+
+const fail = (msg: string) => {
+   //never function
+   throw new Error(msg);
+};
+
+// enums [Enumerations]
+const kids = 15;
+const easy = 9;
+const medium = 6;
+const hard = 3;
+enum level {
+   kids = 15,
+   easy = 9,
+   medium = 6,
+   hard = 3,
+}
+let lvl: string = "easy";
+if (lvl === "easy") {
+   console.log(`Level is ${lvl}, Time left is ${level.easy}`);
+}
+
+function getSec(): number {
+   return 3;
+}
+enum children {
+   five = 25,
+   seven = 20,
+   ten = 15,
+}
+enum diff {
+   kid = children.five,
+   easy = 8,
+   medium = easy - 2,
+   hard = getSec(),
+}
+lvl = "medium";
+if (lvl === "easy") {
+   console.log(`Level is ${lvl}, Time left is ${level.easy}`);
+}
+
+// Type Assertion -> stops checks after <as>
+
+// // let myImg = document.getElementById("img") as HTMLImageElement;
+// let myImg = <HTMLImageElement>document.getElementById("img");
+// console.log(myImg.src);
+
+// Union |    intersection &
+type A = {
+   one: string;
+   two: number;
+};
+type C = {
+   three: boolean;
+};
+type mix = A & C;
+function getActioons(btn: mix) {
+   console.log(`Hello ${btn.one}`);
+   console.log(`Hello ${btn.two}`);
+   console.log(`Hello ${btn.three}`);
+}
+getActioons({ one: "string", two: 10, three: true });
+
+// Type annotation Object
+
+let obj: {
+   readonly user: string;
+   id: number;
+   hire: boolean;
+   skills: {
+      one: string;
+      two: string;
+   };
+} = {
+   user: "Osama",
+   id: 100,
+   hire: true,
+   skills: {
+      one: "HTML",
+      two: "css",
+   },
+};
+// obj.user = "Elzero"
+obj.id = 101;
+obj.hire = false;
+
+console.log(obj.id);
+console.log(obj.skills.two);
+
+////////////Assignments
