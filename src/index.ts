@@ -238,4 +238,158 @@ obj.hire = false;
 console.log(obj.id);
 console.log(obj.skills.two);
 
-////////////Assignments
+// interface Declaration
+interface User {
+   id?: number;
+   username: string;
+   country: string;
+}
+let user: User = {
+   id: 111,
+   username: "Osama",
+   country: "Turkey",
+};
+function getData(data: User) {
+   console.log(`Id is ${data.id}`);
+   console.log(`User is ${data.username}`);
+   console.log(`Country is ${data.country}`);
+}
+getData(user);
+
+// Interface Methods
+interface test5 {
+   id?: number;
+   username: string;
+   country: string;
+   sayHi(): string;
+   sayWelcome: () => string;
+   getDouble(n: number): number;
+}
+let test6: test5 = {
+   id: 111,
+   username: "Osama",
+   country: "Turkey",
+   sayHi() {
+      return `hi ${this.username}`;
+   },
+   sayWelcome: () => `welcome`,
+   getDouble(n) {
+      return n * 2;
+   },
+};
+console.log(test6.getDouble(54));
+console.log(test6.sayHi());
+console.log(test6.sayWelcome());
+
+// Interface reopen
+interface settings {
+   theme: boolean;
+   font: string;
+}
+interface settings {
+   sidebar: boolean;
+}
+interface settings {
+   external?: boolean;
+}
+let userSettings: settings = {
+   theme: true,
+   font: "serif",
+   sidebar: false,
+};
+
+// Interface Extend
+interface test7 extends User {
+   protect: boolean;
+}
+let admin: test7 = {
+   id: 222,
+   username: "elzero",
+   country: "eg",
+   protect: true,
+};
+console.log(admin);
+
+// Class Type Annotation
+class User {
+   u: string;
+   s: number;
+   m: () => string;
+   constructor(user: string, salary: number) {
+      this.u = user;
+      this.s = salary;
+      this.m = () => `Hello`;
+   }
+   sayMsg() {
+      return `Message`;
+   }
+}
+let newUser = new User("Zero", 3030);
+console.log(newUser.u);
+console.log(newUser.s);
+console.log(newUser.m());
+console.log(newUser.sayMsg());
+
+// Class Get & Set
+
+class User2 {
+   m: () => string;
+   constructor(private _user: string, protected salary: number) {
+      this.m = () => `Hello ${this.user}`;
+   }
+   sayMsg() {
+      return `Message`;
+   }
+
+   get user(): string {
+      return this._user;
+   }
+   set user(value: string) {
+      this._user = value;
+   }
+}
+let user3 = new User2("sljf", 98352);
+console.log(user3.m());
+console.log(user3.user);
+// console.log(user3.salary);
+console.log(user3.sayMsg());
+user3.user = "Changed";
+console.log(user3.user);
+
+// Class Static Members
+
+class User4 {
+   private static created: number = 0;
+   static getCount(): void {
+      console.log(`${this.created} Objects created.`);
+   }
+   constructor(private _username2: string) {
+      User4.created++;
+   }
+}
+let u1 = new User4("Elzero");
+let u2 = new User4("Web");
+let u3 = new User4("School");
+console.log(User4.created);
+User4.getCount();
+
+// Class implements interface
+interface admin2 {
+   theme: boolean;
+   font?: "string";
+   save(): void;
+}
+class User5 implements admin2 {
+   constructor(public user: string, public theme: boolean) {}
+   save(): void {
+      console.log(`Saved`);
+   }
+   update(): void {
+      console.log(`updated`);
+   }
+}
+let user6 = new User5("Elzero", true);
+console.log(user6.theme);
+console.log(user6.user);
+user6.save();
+user6.update();
