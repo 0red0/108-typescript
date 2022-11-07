@@ -277,6 +277,165 @@ class User5 {
 }
 let user6 = new User5("Elzero", true);
 console.log(user6.theme);
+console.log(user6.user);
 user6.save();
 user6.update();
+///   Abstract Classes and members
+class Food {
+    constructor(title) {
+        this.title = title;
+    }
+}
+class Pizza extends Food {
+    constructor(title, price) {
+        super(title);
+        this.price = price;
+    }
+    getCookingTime() {
+        console.log(`Pizza Cooking time is 1 Hour`);
+    }
+}
+let pizza1 = new Pizza("Awe Pizza", 123);
+console.log(pizza1.title);
+console.log(pizza1.price);
+pizza1.getCookingTime();
+// Polymorphism and Method override
+class Player {
+    constructor(name) {
+        this.name = name;
+    }
+    attack() {
+        console.log(`Attacking Now`);
+    }
+}
+class Amazon extends Player {
+    constructor(name, spears) {
+        super(name);
+        this.spears = spears;
+    }
+    attack() {
+        console.log(`With spears`);
+        this.spears -= 1;
+    }
+}
+class Barbarian extends Player {
+    constructor(name, axeDurability) {
+        super(name);
+        this.axeDurability = axeDurability;
+    }
+    attack() {
+        console.log(`With Axe`);
+        this.axeDurability -= 1;
+    }
+}
+let barbAttack = new Barbarian("Snakoll", 100);
+console.log(barbAttack.name);
+barbAttack.attack();
+console.log(barbAttack.axeDurability);
+// Generic Introduction
+function returnString(val) {
+    return val;
+}
+function returnType(val) {
+    return val;
+}
+console.log(returnType(110));
+console.log(returnType("Elzeroo"));
+console.log(returnType(true));
+console.log(returnType([1, 2, 3, 4, 5]));
+//Generics Multiple Types
+const showData = (val1, val2) => {
+    return `The first Value ${val1} & The second ${val2}`;
+};
+console.log(showData("Osama", 600));
+// Generics => classes
+class User7 {
+    constructor(value) {
+        this.value = value;
+    }
+    show1(msg) {
+        console.log(`${msg} - ${this.value}`);
+    }
+}
+let user8 = new User7("elzero");
+console.log(user8.value);
+user8.show1("Msg 1");
+let user9 = new User7(101);
+console.log(user9.value);
+user9.show1("Msg 2");
+class Collection {
+    constructor() {
+        this.data = [];
+    }
+    add(item) {
+        this.data.push(item);
+    }
+}
+let item1 = new Collection();
+item1.add({ itemType: "Book", title: "Atomic shit", isbn: 39821 });
+item1.add({ itemType: "Book", title: "lets & go", isbn: 2380 });
+console.log(item1);
+let item2 = new Collection();
+item2.add({ itemType: "game", title: "Gear solider", price: 391 });
+item2.add({ itemType: "game", title: "Kits for life", price: 20 });
+console.log(item2);
+//////// Assignments
+// // Do Not Edit
+// type numandstring = number | string;
+// abstract class Game {
+//    constructor(public title: string, public price: numandstring) {}
+//    abstract getLocation(): string;
+//    abstract getDiscount(): string;
+// }
+// // Start Edit And Fix
+// class RPG extends Game {
+//    constructor(title: string, price: numandstring, public rate: number) {
+//       super(title, price);
+//    }
+//    getDiscount(): string {
+//       return `Discount`;
+//    }
+//    getLocation(): string {
+//       return `Location`;
+//    }
+// }
+// class Action extends Game {
+//    constructor(
+//       title: string,
+//       price: numandstring,
+//       public rate: number,
+//       public company: string
+//    ) {
+//       super(title, price);
+//    }
+//    getDiscount(): string {
+//       return `Discount`;
+//    }
+//    getLocation(): string {
+//       return `Location`;
+//    }
+// }
+// // End Edit And Fix
+// // Do Not Edit
+// let gameOne = new RPG("Ys", 100, 10);
+// let gameTwo = new Action("Uncharted", 90, 15, "Sony");
+// console.log(gameOne.title); // "Ys"
+// console.log(gameOne.price); // 100
+// console.log(gameOne.rate); // 10
+// console.log(gameOne.getDiscount()); // "Discount"
+// console.log(gameOne.getLocation()); // "Location"
+// console.log(gameTwo.title); // "Uncharted"
+// console.log(gameTwo.price); // 90
+// console.log(gameTwo.rate); // 15
+// console.log(gameTwo.company); // "Sony"
+// console.log(gameTwo.getDiscount()); // "Discount"
+// console.log(gameTwo.getLocation()); // "Location"
+function showTypes(a, b, c) {
+    return `${a !== null && a !== void 0 ? a : "Nothing"} - ${b !== null && b !== void 0 ? b : "Nothing"} - ${c !== null && c !== void 0 ? c : "Nothing"}`;
+}
+// Do Not Edit Here
+console.log(showTypes()); // Nothing - Nothing - Nothing
+console.log(showTypes("String")); // String - Nothing - Nothing
+console.log(showTypes("String", 100)); // String - 100 - Nothing
+console.log(showTypes("String", 100, true)); // String - 100 - true
 //# sourceMappingURL=index.js.map

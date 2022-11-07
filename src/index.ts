@@ -393,3 +393,127 @@ console.log(user6.theme);
 console.log(user6.user);
 user6.save();
 user6.update();
+
+///   Abstract Classes and members
+abstract class Food {
+   constructor(public title: string) {}
+   abstract getCookingTime(): void;
+}
+class Pizza extends Food {
+   constructor(title: string, public price: number) {
+      super(title);
+   }
+   getCookingTime(): void {
+      console.log(`Pizza Cooking time is 1 Hour`);
+   }
+}
+let pizza1 = new Pizza("Awe Pizza", 123);
+console.log(pizza1.title);
+console.log(pizza1.price);
+pizza1.getCookingTime();
+
+// Polymorphism and Method override
+class Player {
+   constructor(public name: string) {}
+   attack(): void {
+      console.log(`Attacking Now`);
+   }
+}
+class Amazon extends Player {
+   constructor(name: string, public spears: number) {
+      super(name);
+   }
+   attack() {
+      console.log(`With spears`);
+      this.spears -= 1;
+   }
+}
+class Barbarian extends Player {
+   constructor(name: string, public axeDurability: number) {
+      super(name);
+   }
+   attack() {
+      console.log(`With Axe`);
+      this.axeDurability -= 1;
+   }
+}
+let barbAttack = new Barbarian("Snakoll", 100);
+console.log(barbAttack.name);
+barbAttack.attack();
+console.log(barbAttack.axeDurability);
+
+// Generic Introduction
+function returnString(val: string): string {
+   return val;
+}
+function returnType<GenericType>(val: GenericType): GenericType {
+   return val;
+}
+console.log(returnType<number>(110));
+console.log(returnType<string>("Elzeroo"));
+console.log(returnType<boolean>(true));
+console.log(returnType<number[]>([1, 2, 3, 4, 5]));
+
+//Generics Multiple Types
+
+const showData = <G1, G2>(val1: G1, val2: G2): string => {
+   return `The first Value ${val1} & The second ${val2}`;
+};
+console.log(showData("Osama", 600));
+
+// Generics => classes
+
+class User7<G> {
+   constructor(public value: G) {}
+   show1(msg: G): void {
+      console.log(`${msg} - ${this.value}`);
+   }
+}
+let user8 = new User7("elzero");
+console.log(user8.value);
+user8.show1("Msg 1");
+
+let user9 = new User7<number | string>(101);
+console.log(user9.value);
+user9.show1("Msg 2");
+
+// Generics & interfaces
+
+interface Book {
+   itemType: string;
+   title: string;
+   isbn: number;
+}
+interface game {
+   itemType: string;
+   title: string;
+   style?: string;
+   price: number;
+}
+
+class Collection<GT> {
+   public data: GT[] = [];
+   add(item: GT): void {
+      this.data.push(item);
+   }
+}
+
+let item1 = new Collection<Book>();
+item1.add({ itemType: "Book", title: "Atomic shit", isbn: 39821 });
+item1.add({ itemType: "Book", title: "lets & go", isbn: 2380 });
+console.log(item1);
+
+let item2 = new Collection<game>();
+item2.add({ itemType: "game", title: "Gear solider", price: 391 });
+item2.add({ itemType: "game", title: "Kits for life", price: 20 });
+console.log(item2);
+
+// Assignment
+function showTypes<GT, B = void, C = void>(a?: GT, b?: B, c?: C): string {
+   return `${a ?? "Nothing"} - ${b ?? "Nothing"} - ${c ?? "Nothing"}`;
+}
+// Do Not Edit Here
+console.log(showTypes()); // Nothing - Nothing - Nothing
+console.log(showTypes<string>("String")); // String - Nothing - Nothing
+console.log(showTypes<string, number>("String", 100)); // String - 100 - Nothing
+console.log(showTypes<string, number, boolean>("String", 100, true)); // String - 100 - true
