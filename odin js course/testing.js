@@ -26,5 +26,13 @@ const Player = (name, level) => {
 
 const jimmie = Player("jim", 10);
 const badGuy = Player("jeff", 5);
-jimmie.attack(badGuy);
-jimmie.die();
+// jimmie.attack(badGuy);
+// jimmie.die();
+
+const Formatter = (function () {
+   const log = (msg) => console.log(msg);
+   const makeUppperCase = (text) => {
+      log("Something in here");
+      return text.toUpperCase();
+   };
+})();
