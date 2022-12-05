@@ -1,2 +1,2 @@
-import { people } from "./modules.js";
-import { stats } from "./moduleStats.js";
+import { stats } from "./_statsModule.js";
+import { managePeople } from "./_peopleModule.js";

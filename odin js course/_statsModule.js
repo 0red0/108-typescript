@@ -15,18 +15,19 @@
 // })();
 
 // #4 ///// with pubsub
-import { pubsub } from "./pubsub.js";
+
+import { pubsub } from "./_pubsub.js";
 
 export let stats = (function () {
    let people = 0;
    const stats = document.querySelector(".stats");
+   pubsub.on("peopleChange", setPeople);
    render();
    function render() {
       stats.innerText = `Stats/ ${people} Persons.`;
    }
    function setPeople(newPeople) {
-      people = newPeople;
+      people = newPeople.length;
       render();
    }
-   pubsub.on("peopleChange", setPeople);
 })();

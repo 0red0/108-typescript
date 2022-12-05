@@ -1,9 +1,8 @@
 export let pubsub = {
    events: {},
    on: function (eventName, fn) {
-      this.events[eventName] = this.events[eventName] || [eventName];
+      this.events[eventName] = this.events[eventName] || [];
       this.events[eventName].push(fn);
-      console.log(fn);
    },
    off: function (eventName, fn) {
       if (this.events[eventName]) {

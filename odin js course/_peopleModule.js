@@ -161,10 +161,9 @@
 
 ///// #4-5 PUBSUB Module pattern
 
-// import { stats } from "./moduleStats.js";
-import { pubsub } from "./pubsub.js";
+import { pubsub } from "./_pubsub.js";
 
-export let people = (function () {
+export let managePeople = (function () {
    let people = ["lkj", "hid"];
 
    //cache DOM
@@ -205,8 +204,6 @@ export let people = (function () {
             ? e
             : people.indexOf(e.target.previousSibling.innerText);
       people.splice(i, 1);
-      // e.target.parentElement.remove();
       render();
    }
-   return { addPerson: addPerson, delPerson: delPerson };
 })();
