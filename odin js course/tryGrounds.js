@@ -1,23 +1,31 @@
-// Prototypal inheritance
+// Setters
 
-let human = {
-   species: "human",
-   create: function (values) {
-      let instance = Object.create(this);
-      Object.keys(values).forEach((key) => {
-         instance[key] = values[key];
-      });
-      return instance;
-   },
-   sayName: function () {
-      console.log(this.name);
-   },
-};
-
-let musician = human.create({
-   species: "musician",
-   playInstrument: function () {
-      console.log("plays " + this.instrument);
-   },
-});
-let will = musician.create({ name: "will", instrument: "guitar" });
+class Human {
+   static species = "Homo sapiens";
+   static speciesSentence() {
+      return `Humans are classified as ${this.species}`;
+   }
+   constructor(firstName, lastName) {
+      let privateVar = "private message";
+      this.firstName = firstName;
+      this.lastName = lastName;
+   }
+   get fullName() {
+      // invoke method like a property
+      return `${this.firstName} ${this.lastName}`;
+   }
+   setfirstName(firstName) {
+      return (this.firstName = firstName);
+   }
+   setlastName(lastName) {
+      return (this.lastName = lastName);
+   }
+   setFullName(name) {
+      name = name.split(" ");
+      this.setfirstName(name[0]);
+      this.setlastName(name[1]);
+   }
+}
+const person = new Human("Samir", "Jackovic"); // instance of Human
+console.log(Human.speciesSentence());
+console.log(person.fullName);
