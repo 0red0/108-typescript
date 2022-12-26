@@ -31,15 +31,6 @@
 // }
 // console.log(sumR(10));
 
-//
-//
-//
-// let start = new Date();
-
-// let end = new Date();
-// let duration = end - start;
-// console.log(duration);
-
 //// Arithmetic progression - Arithmetic series (sum)
 
 // function sum(n) {
@@ -125,19 +116,68 @@ let list = {
 };
 
 // function printList(list) {
-//    let tmp = list;
-//    while (tmp) {
-//       console.log(tmp.value);
-//       tmp = tmp.next;
-//    }
+//   let tmp = list;
+//   while (tmp) {
+//     console.log(tmp.value);
+//     tmp = tmp.next;
+//   }
 // }
 // printList(list);
 // function printList(list) {
-//    if (list == null) return;
-//    console.log(list.value);
-//    let tmp = list;
-//    tmp = tmp.next;
-//    printList(tmp);
+//   if (list == null) return;
+//   console.log(list.value);
+//   let tmp = list;
+//   tmp = tmp.next;
+//   printList(tmp);
 // }
 
 // printList(list);
+
+const tree = {
+   name: "john",
+   children: [
+      {
+         name: "jim",
+         children: [],
+      },
+      {
+         name: "zoe",
+         children: [
+            { name: "kyle", children: [] },
+            { name: "sophia", children: [] },
+         ],
+      },
+   ],
+};
+
+function printChildren(tree) {
+   if (tree.children.length === 0) {
+      return;
+   }
+   tree.children.forEach((child) => {
+      console.log(child.name);
+      printChildren(child);
+   });
+}
+printChildren(tree);
+
+// exercises
+// https://www.codingame.com/playgrounds/5422/js-interview-prep-recursion
+//[1]
+// function sumAll(n, total = 0) {
+//   if (n == 0) return total;
+
+//   return sumAll(n - 1, total + n);
+// }
+// console.log(sumAll(3));
+
+//[2]
+// function power(n, p) {
+//   return n ** p;
+// }
+// console.log(power(2, 4));
+
+function power(n, p) {
+   return p === 0 ? 1 : n * power(n, p - 1);
+}
+console.log(power(2, 4));

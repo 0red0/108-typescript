@@ -102,17 +102,17 @@
 
 // Linked list
 let list = {
-  value: 1,
-  next: {
-    value: 2,
-    next: {
-      value: 3,
+   value: 1,
+   next: {
+      value: 2,
       next: {
-        value: 4,
-        next: null,
+         value: 3,
+         next: {
+            value: 4,
+            next: null,
+         },
       },
-    },
-  },
+   },
 };
 
 // function printList(list) {
@@ -133,33 +133,33 @@ let list = {
 
 // printList(list);
 
-const tree = {
-  name: "john",
-  children: [
-    {
-      name: "jim",
-      children: [],
-    },
-    {
-      name: "zoe",
-      children: [
-        { name: "kyle", children: [] },
-        { name: "sophia", children: [] },
-      ],
-    },
-  ],
-};
+// const tree = {
+//    name: "john",
+//    children: [
+//       {
+//          name: "jim",
+//          children: [],
+//       },
+//       {
+//          name: "zoe",
+//          children: [
+//             { name: "kyle", children: [] },
+//             { name: "sophia", children: [] },
+//          ],
+//       },
+//    ],
+// };
 
-function printChildren(tree) {
-  if (tree.children.length === 0) {
-    return;
-  }
-  tree.children.forEach((child) => {
-    console.log(child.name);
-    printChildren(child);
-  });
-}
-printChildren(tree);
+// function printChildren(tree) {
+//    if (tree.children.length === 0) {
+//       return;
+//    }
+//    tree.children.forEach((child) => {
+//       console.log(child.name);
+//       printChildren(child);
+//    });
+// }
+// printChildren(tree);
 
 // exercises
 // https://www.codingame.com/playgrounds/5422/js-interview-prep-recursion
@@ -177,7 +177,127 @@ printChildren(tree);
 // }
 // console.log(power(2, 4));
 
-function power(n, p) {
-  return p === 0 ? 1 : n * power(n, p - 1);
+// function power(n, p) {
+//   return p === 0 ? 1 : n * power(n, p - 1);
+// }
+// console.log(power(2, 4));
+
+//[3]
+// function fac(n) {
+//    return n ? n * fac(n - 1) : 1;
+// }
+// console.log(fac(5));
+
+//[4]
+// n = [1, 2, 9];
+// console.log(n.map((v) => (v == 2 ? console.log(true) : console.log(false))));
+// function checkAll(n) {
+//    for (let i = 0; i < n.length; i++) {
+//       if (n[i] < 7) return false;
+//       if (n[i] > 7) return true;
+//    }
+// }
+// console.log(checkAll(n));
+
+//iterate over array using recursion
+// function rec(arr) {
+//    if (arr.length == 0) return;
+//    console.log(arr[0]);
+//    arr.shift();
+//    rec(arr);
+// }
+// rec(n);
+
+// function rec(arr) {
+//    if (arr.length == 0) return false;
+//    console.log(arr[0]);
+//    arr.shift();
+//    if (arr[0] > 7) {
+//       console.log(true);
+//       return;
+//    }
+//    rec(arr);
+// }
+// rec(n);
+
+//[5]
+
+// function facto(arr, tmp = 1) {
+//    if (arr.length == 0) {
+//       console.log(tmp);
+//       return;
+//    }
+//    tmp *= arr[0];
+//    arr.shift();
+//    facto(arr, tmp);
+// }
+// console.log(facto([1, 2, 3, 10]));
+
+//[6]
+let nestedObject = {
+   data: {
+      info: {
+         stuff: {
+            thing: {
+               moreStuff: {
+                  magicNumber: 44,
+                  something: "foo2",
+               },
+            },
+         },
+      },
+   },
+};
+
+console.log(
+   Object.keys(nestedObject.data.info.stuff.thing.moreStuff.magicNumber).length
+);
+
+//iterate over nested object values
+// function check(obj) {
+//    l = Object.keys(obj).length;
+//    if (l == 0) return;
+
+//    newObj = Object.values(obj)[0];
+//    Object.values(obj).forEach((v) => console.log(v));
+//    check(newObj);
+// }
+// check(nestedObject);
+
+function contains(obj, x) {
+   l = Object.keys(obj).length;
+   if (l == 0) {
+      console.log(false);
+      return;
+   } else {
+      newObj = Object.values(obj)[0];
+      if (newObj == x) console.log(true);
+      contains(newObj, x);
+   }
 }
-console.log(power(2, 4));
+// contains(nestedObject, "foo");
+contains(nestedObject, 44);
+++++++++++++++++++
+Object.values(fruits).some(function (e) {
+   return e === true;
+});
++++++++++++++++++++
+
+var fruits = { apples: false, oranges: true }
+var r = Object.keys(fruits).some(function(key) {
+    return !!fruits[key]
+})
+console.log(r);
+////////////////////
+function containsValue(obj, target) {
+  for (var key in obj) {
+    if (obj[key] === target) {
+      return true;
+    }
+  }
+  
+  return false;
+}
+
+var fruits = {apples: false, oranges: true, bananas: true};
+console.log(containsValue(fruits, true));
