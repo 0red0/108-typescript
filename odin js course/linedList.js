@@ -1,3 +1,55 @@
+// https://www.youtube.com/watch?v=ZBdE8DElQQU&list=WL&index=5&t=293s
+// minimal linked list example [1]
+
+const n1 = {
+   date: 100,
+};
+
+const n2 = {
+   data: 200,
+};
+
+n1.next = n2;
+
+console.log(n1);
+
+// example [2]
+
+class Node {
+   constructor(data, next = null) {
+      this.data = data;
+      this.next = next;
+   }
+}
+
+const n1 = new Node(100);
+console.log(n1);
+
+// example [2.1]
+
+class Node {
+   constructor(data, next = null) {
+      this.data = data;
+      this.next = next;
+   }
+}
+
+class LinkedList {
+   constructor() {
+      this.head = null;
+      this.size = 0;
+   }
+   //Insert first node
+   insertFirst(data) {
+      this.head = new Node(data, this.head); //this is instantiating the first class ((Node))
+   }
+}
+const ll = new LinkedList();
+ll.insertFirst(100);
+ll.insertFirst(200); //it pushed {100 node} over to 2nd place
+console.log(ll);
+
+// complete linkedList
 class Node {
    constructor(data, next = null) {
       this.data = data;
