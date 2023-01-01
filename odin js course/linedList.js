@@ -121,6 +121,8 @@ class LinkedList {
          count++;
          current = current.next;
       }
+      // for(let i=0; i< index;i++){ current = current.next}return current
+
       return null;
    }
 

@@ -1,3 +1,4 @@
+//////####Binary Search Tree####///////
 let array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 
 //// sorting the array for BST
@@ -67,21 +68,7 @@ class tree {
       root.right = this.buildTree(arr, rootIndex + 1, end);
       return root;
    }
-   insert(value, root = this.root) {
-      if (root == null) {
-         return (root = new Node(value));
-      }
-      if (root.data < value) {
-         root.right = this.insert(value, root.right);
-      } else {
-         root.left = this.insert(value, root.left);
-      }
-      prettyPrint(this.root);
-      return root;
-   }
 }
 
 const tree1 = new tree(m);
-
-tree1.insert(11);
-// console.log(tree1);
+console.log(tree1);
