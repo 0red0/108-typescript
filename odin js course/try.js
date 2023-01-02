@@ -79,9 +79,81 @@ class tree {
       prettyPrint(this.root);
       return root;
    }
+   findMin() {
+      let current = this.root;
+      while (current.left) {
+         current = current.left;
+      }
+      return current.data;
+   }
+   findMax() {
+      let current = this.root;
+      while (current.right) {
+         current = current.right;
+      }
+      return current.data;
+   }
+   find(value, root = this.root) {
+      if (root == null) return false;
+      if (root.data == value) return true;
+      if (root.data > value) {
+         return this.find(value, root.left);
+      } else {
+         return this.find(value, root.right);
+      }
+   }
+   remove(data) {
+      const removeNode = function (node, data) {
+         if (node == null) return null;
+
+         if (data == node.data) {
+            //node has no children
+            if (node.left == null && node.right == null) return null;
+            //node has no left child
+            if (node.left == null) return node.right;
+            //node has no right child
+            if (node.right == null) return node.left;
+            //node has two children
+            let tmpNode = node.right;
+            while (tmpNode.left) {
+               tmpNode = tmpNode.left;
+            }
+            node.data = tmpNode.data;
+            node.right = removeNode(node.right, tmpNode.data);
+            return node;
+         } else if (data < node.data) {
+            node.left = removeNode(node.left, data);
+            return node;
+         } else {
+            node.right = removeNode(node.right, data);
+            return node;
+         }
+      };
+      this.root = removeNode(this.root, data);
+      prettyPrint(this.root);
+   }
+   levelOrder(root = this.root) {
+      let result = [];
+      let queue = [];
+      if (root == null) return;
+      queue.push(root);
+      while (queue.length) {
+         let current = queue.shift();
+         result.push(current.data);
+
+         if (current.left) queue.push(current.left);
+         if (current.right) queue.push(current.right);
+      }
+      return result;
+   }
 }
 
 const tree1 = new tree(m);
 
 tree1.insert(11);
+tree1.remove(4);
+console.log(tree1.levelOrder());
+
+// console.log(tree1.find(99));
+// console.log(tree1.findMax());
 // console.log(tree1);
