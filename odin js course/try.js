@@ -26,9 +26,9 @@ function mrg(left, right) {
    return sortedArray;
 }
 
-let m = mrgSort(array);
+// let m = mrgSort(array);
 
-console.log(m.join(" - "));
+// console.log(m.join(" - "));
 
 //// Fancy tree print
 
@@ -53,7 +53,11 @@ class Node {
 
 class tree {
    constructor(arr) {
-      this.root = this.buildTree(arr, 0, arr.length - 1);
+      this.arr = mrgSort(arr);
+      this.root = this.buildTree(this.arr, 0, this.arr.length - 1);
+      this.inOrderData = [];
+      this.preOrderData = [];
+      this.postOrderData = [];
       prettyPrint(this.root);
    }
 
@@ -132,6 +136,7 @@ class tree {
       this.root = removeNode(this.root, data);
       prettyPrint(this.root);
    }
+   //Breadth first traversal
    levelOrder(root = this.root) {
       let result = [];
       let queue = [];
@@ -146,14 +151,85 @@ class tree {
       }
       return result;
    }
+   //Depth first traversal <<inOrder-preOrder-PostOrder>>
+   inOrder(root = this.root) {
+      if (root == null) return;
+      if (root.left) {
+         this.inOrder(root.left);
+      }
+
+      if (root.data !== undefined) {
+         this.inOrderData.push(root.data);
+      }
+
+      if (root.right) {
+         this.inOrder(root.right);
+      }
+      console.log(`inOrder Data: ${this.inOrderData}`);
+   }
+   preOrder(root = this.root) {
+      if (root == null) return;
+      this.preOrderData.push(root.data);
+
+      if (root.left) this.preOrder(root.left);
+      if (root.right) this.preOrder(root.right);
+
+      console.log(`PreOrder Data: ${this.preOrderData}`);
+   }
+   postOrder(root = this.root) {
+      if (root == null) return;
+
+      if (root.left) this.postOrder(root.left);
+      if (root.right) this.postOrder(root.right);
+      this.postOrderData.push(root.data);
+
+      return this.postOrderData;
+   }
+   height(root = this.root) {
+      if (root == null) return -1;
+      let left = this.height(root.left);
+      let right = this.height(root.right);
+      return Math.max(left, right) + 1;
+   }
+   depth(value, root = this.root, count = 0) {
+      if (root == null) return;
+      if (value === root.data) return count;
+      if (value > root.data) {
+         return this.depth(value, root.right, count + 1);
+      } else {
+         return this.depth(value, root.left, count + 1);
+      }
+   }
+   isBalanced(root = this.root) {
+      if (root == null) return `Tree Balance state: ${false}`;
+      let left = this.height(root.left);
+      let right = this.height(root.right);
+      if (Math.abs(left - right) > 1) {
+         return `Tree Balance state: ${false}`;
+      } else {
+         return `Tree Balance state: ${true}`;
+      }
+   }
+   rebalanceIt(root = this.root) {
+      let newArray = this.postOrder();
+      const t2 = new tree(newArray);
+      return `Tree(2)-${t2.isBalanced()}`;
+   }
 }
+const t = new tree(array);
 
-const tree1 = new tree(m);
+t.insert(11);
+t.insert(12);
+// t.remove(4);
+// t.inOrder();
+// t.preOrder();
+// t.postOrder();
+// console.log(t.levelOrder());
+console.log(t.height());
+console.log(t.depth(5));
+console.log(t.isBalanced());
+console.log(t.rebalanceIt());
 
-tree1.insert(11);
-tree1.remove(4);
-console.log(tree1.levelOrder());
-
-// console.log(tree1.find(99));
-// console.log(tree1.findMax());
-// console.log(tree1);
+// console.log(t.find(99));
+// console.log(t.findMax());
+// console.log(t);
