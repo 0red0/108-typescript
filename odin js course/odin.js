@@ -20,6 +20,29 @@
 // const theHobbit = new Book("The Hobbit", "J.RR Tolkien", 295, true);
 // console.log(theHobbit.info());
 
+// ES7 extends without super()
+
+class Human {
+   gender = "male";
+
+   printGender() {
+      // =>
+      console.log(this.gender);
+   }
+}
+
+class Person extends Human {
+   name = "Max";
+
+   printName = () => {
+      console.log(this.name);
+   };
+}
+
+const person = new Person();
+person.printName();
+person.printGender();
+
 // ///// simple traditional constructor example
 function Book(title, author, pages, read) {
    this.title = title;
@@ -264,3 +287,14 @@ console.log(Human.speciesSentence());
 console.log(person.fullName);
 
 // set reset property value permanently
+
+// spread on objects
+
+const person = {
+   name: "max",
+};
+const newPerson = {
+   ...person,
+   age: 39,
+};
+console.log(newPerson);
